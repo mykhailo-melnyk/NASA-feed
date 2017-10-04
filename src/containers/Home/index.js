@@ -9,6 +9,8 @@ import { NeoActions } from '../../actions/neo';
 import { NeoService } from '../../services';
 import Loader from '../../components/Loader';
 
+const START_DATE = moment('2017-09-01T23:59:59');
+
 @connect(state => ({
   activeDays: getNeoActiveDays(state),
 }))
@@ -30,7 +32,7 @@ class Home extends Component {
 
   constructor(props) {
     super(props);
-    this.dayToFetch = moment('2017-09-01T23:59:59');
+    this.dayToFetch = START_DATE;
 
     this.neoService = new NeoService();
   }

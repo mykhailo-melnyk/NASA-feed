@@ -6,7 +6,7 @@ export class NeoService {
   }
 
   isHazardous(day) {
-    return _.includes(this.hazardousDays, day);
+    return this.hazardousDays.includes(day);
   }
 
   static getMaxEstimatedDiameterOfTheDay(day) {
