@@ -2,7 +2,7 @@
   "name": "react-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/",
+  "homepage": "https://mykhailo-melnyk.github.io/NASA-feed/",
   "dependencies": {
     "apollo-test-utils": "^0.3.2",
     "axios": "^0.16.2",
@@ -10,6 +10,7 @@
     "classnames": "^2.2.5",
     "command-line-args": "^4.0.7",
     "core-js": "^2.5.1",
+    "gh-pages": "^1.0.0",
     "graphql-tools": "^1.1.0",
     "history": "^4.6.1",
     "immutable": "^3.8.1",
@@ -107,7 +108,9 @@
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook -s ./public",
     "start:storybook": "serve -s storybook-static",
-    "eslint": "eslint src"
+    "eslint": "eslint src",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "jest": {
     "collectCoverageFrom": [
