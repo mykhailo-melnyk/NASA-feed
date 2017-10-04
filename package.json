@@ -2,7 +2,7 @@
   "name": "react-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mykhailo-melnyk.github.io/NASA-feed/",
+  "homepage": "https://mykhailo-melnyk.github.io/NASA-feed",
   "dependencies": {
     "apollo-test-utils": "^0.3.2",
     "axios": "^0.16.2",
