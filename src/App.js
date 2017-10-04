@@ -17,7 +17,7 @@ const Dashboard = asyncComponent(() => (
 ));
 
 const App = () => (
-  <ConnectedRouter basename="/" history={history}>
+  <ConnectedRouter basename="/NASA-feed" history={history}>
     <div>
       <Switch>
         <Route path="/not-found" exact component={NotFound} />
