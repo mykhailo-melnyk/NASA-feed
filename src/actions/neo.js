@@ -5,41 +5,26 @@ import { NEO } from './types';
 export const NeoActions = {
   getNeoFeed: new ActionCreator(NEO.GET_NEOS, neoApi.getNeoFeed),
 
-  START_FEED: 'START_FEED',
-  STOP_FEED: 'STOP_FEED',
+  START_FEED_PROCESS: 'START_FEED_PROCESS',
+  STOP_FEED_PROCESS: 'STOP_FEED_PROCESS',
 
-  GET_NEOS_FOR_DAY: 'GET_NEOS_FOR_DAY',
+  GET_ALL_NEOS_FOR_DAY: 'GET_ALL_NEOS_FOR_DAY',
 
-  SHOW_NEXT_DAY: 'SHOW_NEXT_DAY',
+  GO_TO_NEXT_DAY: 'GO_TO_NEXT_DAY',
 
-  showNextDay(payload) {
+  goToNextDay(payload) {
     return {
-      type: this.SHOW_NEXT_DAY,
+      type: this.GO_TO_NEXT_DAY,
       payload,
     };
   },
 
-  getNeosForDay(day) {
+  startFeedProcess(startDate) {
     return {
-      type: this.GET_NEOS_FOR_DAY,
-      payload: {
-        day,
-      },
-    };
-  },
-
-  startFeed(startDate) {
-    return {
-      type: this.START_FEED,
+      type: this.START_FEED_PROCESS,
       payload: {
         startDate,
       },
-    };
-  },
-
-  stopFeed() {
-    return {
-      type: this.STOP_FEED,
     };
   },
 };

@@ -9,10 +9,10 @@ const initialState = Immutable.fromJS({
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case NeoActions.START_FEED:
+    case NeoActions.START_FEED_PROCESS:
       return state.set('dayToFetch', action.payload.startDate);
 
-    case NeoActions.SHOW_NEXT_DAY:
+    case NeoActions.GO_TO_NEXT_DAY:
       return state
         .set('dayToFetch', action.payload.dayToFetch)
         .set('activeDays', Immutable.List(action.payload.activeDays));

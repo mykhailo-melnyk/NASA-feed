@@ -7,7 +7,7 @@ import { NeoActions } from '../actions/neo';
 
 import { getNeoState } from '../selectors/neo';
 
-export function* fetchForWeek(startDate) {
+export function* getDataForWeek(startDate) {
   yield put(
     NeoActions.getNeoFeed.request({
       startDate,
@@ -16,11 +16,11 @@ export function* fetchForWeek(startDate) {
 }
 
 export function* neoRootSaga() {
-  const channel = yield actionChannel(NeoActions.START_FEED);
+  const channel = yield actionChannel(NeoActions.START_FEED_PROCESS);
 
   // fetch first week right away
   const { payload: { startDate } } = yield take(channel);
-  yield call(fetchForWeek, startDate);
+  yield call(getDataForWeek, startDate);
 
   while (startDate) {
     // Tick
@@ -43,7 +43,7 @@ export function* neoRootSaga() {
     const key = dayToFetch.format('YYYY-MM-DD');
     activeDays.unshift({ day: key, neos: days[key] });
 
-    yield put(NeoActions.showNextDay({ dayToFetch: nextDay.clone(), activeDays }));
+    yield put(NeoActions.goToNextDay({ dayToFetch: nextDay.clone(), activeDays }));
 
     const lastFetchedDay =
       _.chain(days)
@@ -53,7 +53,7 @@ export function* neoRootSaga() {
         .value() || dayToFetch;
 
     if (nextDay.add(3, 'd').isSameOrAfter(lastFetchedDay)) {
-      yield fork(fetchForWeek, nextDay);
+      yield fork(getDataForWeek, nextDay);
     }
   }
 }
