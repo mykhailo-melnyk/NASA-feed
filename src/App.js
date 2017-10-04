@@ -3,10 +3,8 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Switch, Route } from 'react-router-dom';
 
 import { history } from './store/configureStore';
-import Login from './containers/Login';
 import NotFound from './containers/NotFound';
 import asyncComponent from './components/AsyncComponent';
-import loginRequired from './containers/Authenticated';
 
 const Dashboard = asyncComponent(() => (
   import('./containers/Dashboard').then(module => module.default).then(module => (
@@ -22,9 +20,8 @@ const App = () => (
   <ConnectedRouter basename="/" history={history}>
     <div>
       <Switch>
-        <Route path="/login" exact component={Login} />
         <Route path="/not-found" exact component={NotFound} />
-        <Route component={loginRequired(Dashboard)} />
+        <Route component={Dashboard} />
       </Switch>
     </div>
   </ConnectedRouter>

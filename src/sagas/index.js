@@ -1,7 +1,10 @@
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { UserActions } from '../actions/user';
+import { NeoActions } from '../actions/neo';
 import { createApiSaga } from '../libs/ApiActions/createApiSaga';
+import { neoRootSaga } from './neo';
 
 export const injectSagas = (sagaMiddleware) => {
-  sagaMiddleware.run(createApiSaga(UserActions.login, [LOCATION_CHANGE]));
+  sagaMiddleware.run(createApiSaga(NeoActions.getNeoFeed, [LOCATION_CHANGE]));
+
+  sagaMiddleware.run(neoRootSaga);
 };

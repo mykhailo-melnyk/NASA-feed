@@ -1,3 +1,3 @@
-import { loginAPI } from './user';
+import { getNeoFeed } from './neo';
 
-export const user = { loginAPI };
+export const neoApi = { getNeoFeed };

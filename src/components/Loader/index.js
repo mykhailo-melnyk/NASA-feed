@@ -6,6 +6,7 @@ const size = 25;
 const LoaderStyled = styled(Loader)`
   position: absolute;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background: ${props => props.bgColor || 'rgba(0, 0, 0, 0.2)'};

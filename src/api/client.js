@@ -5,8 +5,9 @@
 
 import axios from 'axios';
 import Qs from 'qs';
+import _ from 'lodash';
+
 import { BASE_URL, MOCK_ENABLED, MOCK_URLS } from '../app.constants';
-// import { store } from '../app';
 
 const client = axios.create({
   baseURL: BASE_URL,
@@ -17,9 +18,7 @@ const client = axios.create({
  * @param params
  * @returns {*|string}
  */
-axios.paramsSerializer = params => (
-  Qs.stringify(params, { arrayFormat: 'brackets' })
-);
+axios.paramsSerializer = params => Qs.stringify(params, { arrayFormat: 'brackets' });
 
 client.interceptors.request.use((config) => {
   // const state = store.getState().get('auth').toJS();
@@ -34,19 +33,20 @@ client.interceptors.request.use((config) => {
       }
     }
   }
+  _.set(config, 'params.api_key', 'SPboJP8XCDF9nlUzSqcqzh0Mq9sJuy6Hf27FuTFl');
   return config;
 });
 
-client.interceptors.response.use(response => (
-  response.data
-), error => (
-  new Promise((resolve, reject) => {
-    if (error.response.status === 400 || error.response.status === 401) {
-      reject(error.response.data);
-    } else {
-      reject(error);
-    }
-  })
-));
+client.interceptors.response.use(
+  response => response.data,
+  error =>
+    new Promise((resolve, reject) => {
+      if (error.response.status === 400 || error.response.status === 401) {
+        reject(error.response.data);
+      } else {
+        reject(error);
+      }
+    }),
+);
 
 export default client;

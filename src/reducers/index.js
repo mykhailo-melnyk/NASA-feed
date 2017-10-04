@@ -1,14 +1,13 @@
 import { combineReducers } from 'redux-immutable';
 
-import user from './user';
 import routerReducer from './router';
+import neo from './neo';
 
-const rootReducer = asyncReducers => (
+const rootReducer = asyncReducers =>
   combineReducers({
     router: routerReducer,
-    user,
+    neo,
     ...asyncReducers,
-  })
-);
+  });
 
 export default rootReducer;
